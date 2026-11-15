@@ -64,6 +64,7 @@ Modular Terraform for a highly available, secure WordPress site on AWS (`ap-sout
    - **Network ACLs:** Stateless subnet boundaries restrict DB subnets to MySQL `3306` and ephemeral return ports (`1024–65535`) from Private App subnets only; the DB route table has no IGW or NAT route.
 4. **Compute & Access Hardening:** EC2 instances have no public IPs, enforce **IMDSv2** (`http_tokens = "required"`), and use **SSM Session Manager** instead of SSH port `22`.
 5. **No Hardcoded Secrets:** `db_username` and `db_password` are marked `sensitive = true`, excluded from Git via `.gitignore`, and parameterized.
+6. **Remote State & Locking (Production Ready):** [`backend.tf`](backend.tf) provides an encrypted S3 backend with native S3 state locking (`use_lockfile = true`, Terraform `>= 1.11`). It is commented out by default so `$0` offline `terraform plan` works out of the box without an AWS account.
 
 ---
 
