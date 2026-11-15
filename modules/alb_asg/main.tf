@@ -1,5 +1,11 @@
 locals {
   name_prefix = "${var.project_name}-${var.environment}"
+  common_tags = {
+    Project     = var.project_name
+    Environment = var.environment
+    Service     = "wordpress"
+    ManagedBy   = "Terraform"
+  }
 }
 
 # Application Load Balancer & Target Group
@@ -118,9 +124,16 @@ resource "aws_launch_template" "wordpress" {
 
   tag_specifications {
     resource_type = "instance"
-    tags = {
+    tags = merge(local.common_tags, {
       Name = "${local.name_prefix}-wordpress"
-    }
+    })
+  }
+
+  tag_specifications {
+    resource_type = "volume"
+    tags = merge(local.common_tags, {
+      Name = "${local.name_prefix}-wordpress-ebs"
+    })
   }
 }
 
