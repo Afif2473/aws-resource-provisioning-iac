@@ -1,10 +1,10 @@
 variable "project_name" {
-  description = "Project name used for resourcec naming and tagging"
+  description = "Project name used for resource naming and tagging"
   type        = string
 }
 
 variable "environment" {
-  description = "Deploymemt environment"
+  description = "Deployment environment"
   type        = string
 }
 

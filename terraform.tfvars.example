@@ -29,7 +29,6 @@ deletion_protection     = false
 # ALB & EC2 Auto Scaling
 
 wordpress_ami_id         = "ami-0123456789abcdef0"
-wp_config_path           = "/var/www/html/wp-config.php" # Bitnami AMI uses /opt/bitnami/wordpress/wp-config.php
 instance_type            = "t3.small"
 alb_acm_certificate_arn  = "arn:aws:acm:ap-southeast-1:123456789012:certificate/00000000-0000-0000-0000-000000000000"
 alb_ssl_policy           = "ELBSecurityPolicy-TLS13-1-2-2021-06"
@@ -44,5 +43,4 @@ alarm_evaluation_periods = 6
 # CloudFront
 
 cf_acm_certificate_arn = "arn:aws:acm:us-east-1:123456789012:certificate/00000000-0000-0000-0000-000000000000"
-cf_aliases             = ["www.yakinbisalolos.sch.id"]
 price_class            = "PriceClass_200"

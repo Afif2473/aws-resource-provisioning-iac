@@ -146,6 +146,10 @@ resource "aws_autoscaling_group" "this" {
     value               = "${local.name_prefix}-wordpress-asg"
     propagate_at_launch = true
   }
+
+  lifecycle {
+    ignore_changes = [desired_capacity]
+  }
 }
 
 resource "aws_autoscaling_policy" "scale_up" {
@@ -176,6 +180,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_high" {
   period              = var.alarm_period
   statistic           = "Average"
   threshold           = var.scale_up_cpu_threshold
+  treat_missing_data  = "notBreaching"
 
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.this.name
@@ -196,6 +201,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_low" {
   period              = var.alarm_period
   statistic           = "Average"
   threshold           = var.scale_down_cpu_threshold
+  treat_missing_data  = "notBreaching"
 
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.this.name
