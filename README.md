@@ -1,4 +1,4 @@
-# PT Yakin Bisa Lolos – Secure 3-Tier WordPress on AWS (Terraform)
+# A Secure 3-Tier WordPress on AWS (Terraform)
 
 Modular Terraform for a highly available, secure WordPress site on AWS (`ap-southeast-1`):
 **CloudFront → ALB → EC2 Auto Scaling Group → RDS MySQL**, inside a 3-tier VPC.
